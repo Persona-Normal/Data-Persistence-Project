@@ -19,7 +19,7 @@ public class MenuHandler : MonoBehaviour
     {
         if (DataPersistenceManager.Instance != null) 
         {
-            highScoreText.text = $"Best Score: {DataPersistenceManager.Instance.highScore.playerName} : {DataPersistenceManager.Instance.highScore.score}";
+            highScoreText.text = $"Best Score : {DataPersistenceManager.Instance.highScore.playerName} : {DataPersistenceManager.Instance.highScore.score}";
         }
     }
 
