@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class DataPersistenceManager : MonoBehaviour
 {
+
+    public static DataPersistenceManager instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);   
+    }
+
     // Start is called before the first frame update
     void Start()
     {
