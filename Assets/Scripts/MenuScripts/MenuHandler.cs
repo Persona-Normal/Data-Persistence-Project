@@ -38,4 +38,9 @@ public class MenuHandler : MonoBehaviour
         Application.Quit(); // original code to quit Unity player
 #endif
     }
+
+    public void OnPlayerNameEnter(string playerName) 
+    {
+        DataPersistenceManager.Instance.playerName = playerName;
+    }
 }

@@ -5,29 +5,18 @@ using UnityEngine;
 public class DataPersistenceManager : MonoBehaviour
 {
 
-    public static DataPersistenceManager instance;
+    public static DataPersistenceManager Instance { get; private set; }
+    public string playerName;
 
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
 
-        instance = this;
+        Instance = this;
         DontDestroyOnLoad(gameObject);   
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
