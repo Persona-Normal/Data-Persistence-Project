@@ -40,11 +40,11 @@ public class MainManager : MonoBehaviour
 
         if (DataPersistenceManager.Instance != null) 
         { 
-            showHighScore(); 
+            ShowHighScore(); 
         }
     }
 
-    private void showHighScore()
+    private void ShowHighScore()
     {
         highScoreText.text = $"Best Score : {DataPersistenceManager.Instance.highScore.playerName} : {DataPersistenceManager.Instance.highScore.score}";
     }
@@ -83,5 +83,17 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+        UpdateHighScore();  
+    }
+
+    private void UpdateHighScore()
+    {
+        if (DataPersistenceManager.Instance != null && m_Points > DataPersistenceManager.Instance.highScore.score)
+        {
+            DataPersistenceManager.Instance.highScore.score = m_Points;
+            DataPersistenceManager.Instance.highScore.playerName = DataPersistenceManager.Instance.playerName;
+            DataPersistenceManager.Instance.SaveHighScoreData();
+            ShowHighScore();  
+        }
     }
 }
