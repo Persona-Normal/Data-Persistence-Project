@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -11,17 +12,15 @@ using UnityEditor;
 public class MenuHandler : MonoBehaviour
 {
     [SerializeField] int mainSceneIndex = 1;
+    [SerializeField] Text highScoreText;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (DataPersistenceManager.Instance != null) 
+        {
+            highScoreText.text = $"Best Score: {DataPersistenceManager.Instance.highScore.playerName} : {DataPersistenceManager.Instance.highScore.score}";
+        }
     }
 
     public void StartGame()
@@ -41,6 +40,9 @@ public class MenuHandler : MonoBehaviour
 
     public void OnPlayerNameEnter(string playerName) 
     {
-        DataPersistenceManager.Instance.playerName = playerName;
+        if (DataPersistenceManager.Instance != null) 
+        { 
+            DataPersistenceManager.Instance.playerName = playerName; 
+        }   
     }
 }
